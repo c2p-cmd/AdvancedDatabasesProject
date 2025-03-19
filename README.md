@@ -42,15 +42,38 @@ The implementation includes queries for:
 - Random document selection
 - Complex data transformations and analysis
 
-## MySQL Implementation (Coming Soon)
+## MySQL Implementation
 
-The MySQL portion of the project is currently under development and will include:
+The MySQL portion implements a video game store database with comprehensive functionality:
 
-- Table creation and schema design
-- Advanced SQL queries
-- Stored procedures and functions
-- Transaction management
-- Performance optimization
+### Database Schema
+
+The gaming database includes the following tables:
+
+- Gamers: Users who purchase games
+- GamePublishers: Companies that publish video games
+- VideoGames: Game titles with details and pricing
+- Purchases: Records of game purchases by gamers
+
+### Key Features
+
+- Database Design: Well-structured tables with primary and foreign keys
+- Stored Procedures: Implement key business logic like purchasing games
+- Triggers: Ensure data integrity and business rules
+- Data Analysis: SQL queries for business intelligence and analytics
+- Joins: Demonstrate relationships between database entities
+
+### Directory Structure
+
+```
+/mysql
+├── CREATE.sql               # Database and table creation script
+├── INSERT.sql               # Sample data for all tables
+├── CREATE_PROCEDURES.sql    # Stored procedures implementation
+├── TRIGGERS.sql             # Database triggers
+├── Analytics.sql            # Business intelligence queries
+└── PROCEDURE_EXAMPLE.sql    # Examples of procedure calls
+```
 
 ## Getting Started
 
@@ -58,6 +81,24 @@ The MySQL portion of the project is currently under development and will include
 
 - MongoDB 8+ installed
 - MySQL 8.0+ installed
+
+### Running MongoDB Scripts
+
+- Start your MongoDB server
+- Open MongoDB Shell or MongoDB Compass
+- Load and execute the scripts in the mongodb directory
+
+### Running MySQL Implementation
+
+- Start your MySQL server
+- Run the scripts in the following order:
+  - `CREATE.sql` - Creates database schema
+  - `INSERT.sql` - Populates tables with sample data
+  - `CREATE_PROCEDURES.sql` - Adds stored procedures
+  - `CREATE_TRIGGERS.sql` - Sets up database triggers
+- Execute example procedures with `PROCEDURE_EXAMPLE.sql`
+- Execute examples for the trigger with `TRIGGER_EXAMPLE.sql`
+- Run analytics queries from `ANALYTICS.sql`
 
 ## License
 
