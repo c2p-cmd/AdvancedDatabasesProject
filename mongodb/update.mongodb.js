@@ -3,12 +3,11 @@
 
 // The current database to use.
 use("mongo_stories");
+db.stories.find({ title: "The Cock and the Fox" });
 
-// Update the story with title "Belling the Cat" to "Belling the Cat (Updated)"
+// Update the story with title "The Cock and the Fox" to "Belling the Cat (Updated)"
+use("mongo_stories");
 db.stories.updateOne(
-  { title: "Belling the Cat" },
+  { title: "The Cock and the Fox" },
   { $set: { author: "Suzie Wolfgang" } }
 );
-
-// Find the updated story
-// db.stories.find({ title: "Belling the Cat" });
