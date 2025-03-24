@@ -6,7 +6,11 @@ CREATE PROCEDURE ShowGamerLibrary(
 	IN gamer_tag varchar(30)
 )
 BEGIN
-    IF NOT EXISTS (SELECT * FROM Gamers WHERE gamer_tag = gamer_tag) THEN
+	DECLARE does_exist BOOL DEFAULT FALSE;
+    
+    SELECT TRUE INTO does_exist FROM Gamers WHERE gamer_tag = gamer_tag LIMIT 1;
+    
+    IF does_exist = FALSE THEN
         SELECT 'Error: Gamer does not exist' AS message;
     ELSE
         SELECT
@@ -33,7 +37,6 @@ BEGIN
 
     IF NOT EXISTS (SELECT * FROM VideoGames WHERE game_id = p_game_id) THEN
         SELECT 'Error: Game does not exist' AS message;
-    
     ELSEIF NOT EXISTS (SELECT * FROM Gamers WHERE gamer_tag = p_gamer_tag) THEN
         SELECT 'Error: Gamer does not exist' AS message;
     ELSEIF EXISTS (SELECT * FROM Purchases WHERE gamer_tag = p_gamer_tag AND game_id = p_game_id) THEN
