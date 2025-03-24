@@ -8,8 +8,13 @@ SELECT * FROM Gamers where gamer_tag = 'unknown_gamer';
 UPDATE VideoGames SET price = -10 WHERE title = 'Mario Tennis Aces';
 
 -- deleting a publisher with games
+SELECT * FROM GamePublishers;
+INSERT INTO GamePublishers(name, country, founding_date)
+VALUES
+('Interactive Games', 'England', '2013-04-06');
+
 -- fail
 DELETE FROM GamePublishers WHERE publisher_id = 3;
 
 -- success
-DELETE FROM GamePublishers where publisher_id = 11;
+DELETE FROM GamePublishers where publisher_id = 12;
