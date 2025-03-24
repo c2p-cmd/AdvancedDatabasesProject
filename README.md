@@ -48,6 +48,8 @@ The MySQL portion implements a video game store database with comprehensive func
 
 ### Database Schema
 
+![ERD](./mysql/ERD.svg)
+
 The gaming database includes the following tables:
 
 - Gamers: Users who purchase games
@@ -99,6 +101,47 @@ The gaming database includes the following tables:
 - Execute example procedures with `PROCEDURE_EXAMPLE.sql`
 - Execute examples for the trigger with `TRIGGER_EXAMPLE.sql`
 - Run analytics queries from `ANALYTICS.sql`
+
+## Data Visualization Dashboard
+
+The project includes an optional interactive Dash web application that visualizes the MySQL gaming database analytics:
+
+### Dashboard Features
+
+- **Interactive Visualizations**: Charts and graphs providing insights into game popularity, pricing, and purchasing patterns
+- **Multi-tab Interface**: Organized views for Game Analytics, Gamer Analytics, Publisher Analytics, and more
+- **Live Database Connection**: Direct connection to the MySQL database for real-time data
+- **Email Domain Analysis**: Visual comparison between Gmail and iCloud users' gaming preferences
+- **Stored Procedure Integration**: Execute and visualize results from database stored procedures
+
+### Dashboard Components
+
+- Game popularity and pricing trends
+- Gamer spending patterns and activity levels
+- Publisher performance metrics
+- Interactive query selector for custom analysis
+- Gamer library lookup functionality
+
+### Running the Dashboard
+
+1. Install required packages:
+   ```bash
+   pip install -r requirements.txt
+   ```
+2. Configure database connection:
+
+- Create a .env file in the root directory
+- Add your database connection string: `DB_CONNECTION_STR=mysql+pymysql://username:password@localhost/gaming_db`
+
+3. Start the dashboard:
+
+```
+python dashboard/app.py
+```
+
+4. Open your browser to http://127.0.0.1:8050/
+
+![App Screenshot](./dashboard/dahs_app.png)
 
 ## License
 
