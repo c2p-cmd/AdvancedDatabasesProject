@@ -1,3 +1,6 @@
+-- Show Users
+SELECT * FROM Gamers;
+
 -- See Rainbow Archer's Library
 Call ShowGamerLibrary('RainbowArcher');
 
