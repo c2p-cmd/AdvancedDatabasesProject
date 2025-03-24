@@ -1,4 +1,4 @@
-# Advanced Databases Project
+# Data Darbar - Advanced Databases Project
 
 A comprehensive project showcasing database operations, and data modeling across MongoDB and MySQL. This project demonstrates practical applications of advanced database concepts through two distinct implementations.
 
