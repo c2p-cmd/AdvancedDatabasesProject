@@ -69,8 +69,8 @@ db.stories.aggregate([
       lengthCategory: {
         $switch: {
           branches: [
-            { case: { $lt: [{ $strLenCP: "$story" }, 1000] }, then: "Short" },
-            { case: { $lt: [{ $strLenCP: "$story" }, 5000] }, then: "Medium" },
+            { case: { $lt: [{ $strLenCP: "$story" }, 500] }, then: "Short" },
+            { case: { $lt: [{ $strLenCP: "$story" }, 1000] }, then: "Medium" },
           ],
           default: "Long"
         }
