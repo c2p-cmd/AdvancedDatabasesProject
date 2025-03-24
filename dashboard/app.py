@@ -156,11 +156,11 @@ app.layout = dbc.Container(
                                                 },
                                                 # Stored procedures
                                                 {
-                                                    "label": "Run: Show All Gamers With Purchases",
+                                                    "label": "Show All Gamers With Purchases",
                                                     "value": "proc_gamers_purchases",
                                                 },
                                                 {
-                                                    "label": "Run: Show Purchased Games",
+                                                    "label": "Show Purchased Games",
                                                     "value": "proc_purchased_games",
                                                 },
                                             ],
@@ -283,6 +283,13 @@ def update_game_analytics(_):
         title="Game Price Distribution",
         labels={"price": "Price ($)", "game_count": "Number of Games"},
     )
+    price_fig.add_vline(
+        x=price_df["price"].mean(),
+        line_dash="dash",
+        line_color="red",
+        annotation_text=f"Mean Price: {price_df["price"].mean():.2f}",
+        annotation_position="top",
+    )
 
     # Genre distribution chart
     genre_query = """
@@ -387,10 +394,10 @@ def update_publisher_analytics(_):
         ORDER BY games_published DESC
     """
     pub_games_df = pd.read_sql(pub_games_query, engine)
-    pub_games_fig = px.bar(
+    pub_games_fig = px.pie(
         pub_games_df,
-        x="name",
-        y="games_published",
+        names="name",
+        values="games_published",
         title="Publishers by Number of Games",
         labels={"games_published": "Games Published", "name": "Publisher"},
     )
