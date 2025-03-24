@@ -1,7 +1,7 @@
 -- Analytics good for the businesses
 
 
--- 5 most popular games
+-- 10 most popular games
 SELECT
     v.title,
     v.genre,
@@ -15,7 +15,7 @@ GROUP BY
 ORDER BY
     times_purchased DESC
 LIMIT
-    5;
+    10;
 
 -- gamers with most purchases
 SELECT
@@ -122,4 +122,4 @@ GROUP BY
     v.genre
 ORDER BY
     email_domain,
-    purchase_count DESC
+    purchase_count DESC;
