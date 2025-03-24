@@ -2,14 +2,6 @@
 // MongoDB Playground
 // Use Ctrl+Space inside a snippet or a string literal to trigger completions.
 
-const database = "mongo_stories";
-
-// Create a new database.
-use(database);
-
-// Create a new collection.
-db.createCollection("stories");
-
 // The prototype form to create a collection:
 /* db.createCollection( <name>,
   {
@@ -40,6 +32,14 @@ db.createCollection("stories");
 
 // More information on the `createCollection` command can be found at:
 // https://www.mongodb.com/docs/manual/reference/method/db.createCollection/
+
+const database = "mongo_stories";
+
+// Create a new database.
+use(database);
+
+// Create a new collection.
+db.createCollection("stories");
 
 // Load the sample data from the file.
 const loadData = (filePath) => {
