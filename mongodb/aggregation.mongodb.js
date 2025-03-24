@@ -4,64 +4,68 @@
 // The current database to use.
 use("mongo_stories");
 
-
 // Count stories by author
+use("mongo_stories");
 db.stories.aggregate([
   { $group: { _id: "$author", count: { $sum: 1 } } },
-  { $sort: { count: -1 } }
+  { $sort: { count: -1 } },
 ]);
 
 // Stories published per month
+use("mongo_stories");
 db.stories.aggregate([
-  { 
+  {
     $addFields: {
-      monthYear: { 
-        $substr: ["$datetime", 0, 7]
-      }
-    }
+      monthYear: {
+        $substr: ["$datetime", 0, 7],
+      },
+    },
   },
   { $group: { _id: "$monthYear", count: { $sum: 1 } } },
-  { $sort: { _id: -1 } }
+  { $sort: { _id: -1 } },
 ]);
 
 // Average story length by author
+use("mongo_stories");
 db.stories.aggregate([
-  { 
-    $addFields: { 
-      storyLength: { $strLenCP: "$story" } 
-    } 
+  {
+    $addFields: {
+      storyLength: { $strLenCP: "$story" },
+    },
   },
-  { 
-    $group: { 
-      _id: "$author", 
+  {
+    $group: {
+      _id: "$author",
       averageLength: { $avg: "$storyLength" },
-      totalStories: { $sum: 1 }
-    } 
+      totalStories: { $sum: 1 },
+    },
   },
-  { $sort: { averageLength: -1, totalStories: -1 } }
+  { $sort: { averageLength: -1, totalStories: -1 } },
 ]);
 
 // Story counts by time period
+use("mongo_stories");
 db.stories.aggregate([
   {
     $facet: {
-      "last30Days": [
+      last30Days: [
         { $match: { datetime: { $gte: "2024-02-15" } } },
-        { $count: "count" }
+        { $count: "count" },
       ],
-      "last90Days": [
+      last90Days: [
         { $match: { datetime: { $gte: "2023-12-15" } } },
-        { $count: "count" }
+        { $count: "count" },
       ],
-      "last365Days": [
+      last365Days: [
         { $match: { datetime: { $gte: "2023-03-15" } } },
-        { $count: "count" }
-      ]
-    }
-  }
+        { $count: "count" },
+      ],
+    },
+  },
 ]);
 
 // Stories by length categories
+use("mongo_stories");
 db.stories.aggregate([
   {
     $addFields: {
@@ -72,11 +76,11 @@ db.stories.aggregate([
             { case: { $lt: [{ $strLenCP: "$story" }, 500] }, then: "Short" },
             { case: { $lt: [{ $strLenCP: "$story" }, 1000] }, then: "Medium" },
           ],
-          default: "Long"
-        }
-      }
-    }
+          default: "Long",
+        },
+      },
+    },
   },
   { $group: { _id: "$lengthCategory", count: { $sum: 1 } } },
-  { $sort: { count: -1 } }
+  { $sort: { count: -1 } },
 ]);
